@@ -1,6 +1,7 @@
 public class Arvore {
     No raiz;
 
+
     public int contarNos() {
         return contarNosRecursivo(raiz);
     }
@@ -12,15 +13,15 @@ public class Arvore {
         return 1 + contarNosRecursivo(no.esquerda) + contarNosRecursivo(no.direita);
     }
 
-    public void percorrerPreOrdem() {
-        percorrerPreOrdemRec(raiz);
+    public void percorrerEmOrdem() {
+        percorrerEmOrdemRec(raiz);
     }
 
-    private void percorrerPreOrdemRec(No no) {
+    private void percorrerEmOrdemRec(No no) {
         if (no != null) {
+            percorrerEmOrdemRec(no.esquerda);
             System.out.print(no.valor + " ");
-            percorrerPreOrdemRec(no.esquerda);
-            percorrerPreOrdemRec(no.direita);
+            percorrerEmOrdemRec(no.direita);
         }
     }
 }
