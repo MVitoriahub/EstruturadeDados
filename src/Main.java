@@ -2,7 +2,6 @@ public class Main {
     public static void main(String[] args) {
         Arvore arvore = new Arvore();
 
-
         arvore.raiz = new No("a");
         arvore.raiz.esquerda = new No("b");
         arvore.raiz.direita = new No("c");
@@ -13,5 +12,9 @@ public class Main {
 
         int totalNos = arvore.contarNos();
         System.out.println("Total de nós na árvore: " + totalNos);
+
+
+        System.out.print("Pré-ordem: ");
+        arvore.percorrerPreOrdem();
     }
 }
