@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Main {
     public static void main(String[] args) {
         Arvore arvore = new Arvore();
@@ -12,8 +15,8 @@ public class Main {
         int totalNos = arvore.contarNos();
         System.out.println("Total de nós na árvore: " + totalNos);
 
-        System.out.print("Pós-ordem: ");
-        arvore.percorrerPosOrdem();
+        System.out.print("Em nível: ");
+        arvore.percorrerEmNivel();
     }
 }
 
