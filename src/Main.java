@@ -9,7 +9,7 @@ public class Main {
         arvore.raiz.esquerda.direita = new No("e");
         arvore.raiz.direita.direita = new No("f");
 
-        System.out.print("Pré-ordem iterativa: ");
-        arvore.percorrerPreOrdemIterativo();
+        System.out.print("Em ordem: ");
+        arvore.percorrerEmOrdemIterativo();
     }
 }
