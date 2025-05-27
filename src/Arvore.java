@@ -3,21 +3,29 @@ import java.util.Stack;
 public class Arvore {
     No raiz;
 
-    public void percorrerEmOrdemIterativo() {
-        Stack<No> pilha = new Stack<>();
-        No atual = raiz;
+    public void percorrerPosOrdemIterativo() {
+        if (raiz == null) return;
 
-        while (atual != null || !pilha.isEmpty()) {
+        Stack<No> pilha1 = new Stack<>();
+        Stack<No> pilha2 = new Stack<>();
 
-            while (atual != null) {
-                pilha.push(atual);
-                atual = atual.esquerda;
+        pilha1.push(raiz);
+
+        while (!pilha1.isEmpty()) {
+            No atual = pilha1.pop();
+            pilha2.push(atual);
+
+            if (atual.esquerda != null) {
+                pilha1.push(atual.esquerda);
             }
 
-            atual = pilha.pop();
-            System.out.print(atual.valor + " ");
+            if (atual.direita != null) {
+                pilha1.push(atual.direita);
+            }
+        }
 
-            atual = atual.direita;
+        while (!pilha2.isEmpty()) {
+            System.out.print(pilha2.pop().valor + " ");
         }
     }
 }
