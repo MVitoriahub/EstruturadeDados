@@ -9,7 +9,6 @@ public class Main {
         arvore.raiz.esquerda.direita = new No("e");
         arvore.raiz.direita.direita = new No("f");
 
-        System.out.print("Pós-ordem: ");
-        arvore.percorrerPosOrdemIterativo();
+        System.out.println("Número de nós folha: " + arvore.contarNosFolhaIterativo());
     }
 }
