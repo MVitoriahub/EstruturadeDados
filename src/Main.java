@@ -1,6 +1,3 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Main {
     public static void main(String[] args) {
         Arvore arvore = new Arvore();
@@ -12,13 +9,7 @@ public class Main {
         arvore.raiz.esquerda.direita = new No("e");
         arvore.raiz.direita.direita = new No("f");
 
-        int totalNos = arvore.contarNos();
-        System.out.println("Total de nós na árvore: " + totalNos);
-
-        System.out.print("Em nível: ");
-        arvore.percorrerEmNivel();
+        System.out.print("Pré-ordem iterativa: ");
+        arvore.percorrerPreOrdemIterativo();
     }
 }
-
-
-

@@ -1,38 +1,26 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
 public class Arvore {
     No raiz;
 
-    public int contarNos() {
-        return contarNosRecursivo(raiz);
-    }
-
-    private int contarNosRecursivo(No no) {
-        if (no == null) {
-            return 0;
-        }
-        return 1 + contarNosRecursivo(no.esquerda) + contarNosRecursivo(no.direita);
-    }
-
-    public void percorrerEmNivel() {
+    public void percorrerPreOrdemIterativo() {
         if (raiz == null) {
             return;
         }
 
-        Queue<No> fila = new LinkedList<>();
-        fila.add(raiz);
+        Stack<No> pilha = new Stack<>();
+        pilha.push(raiz);
 
-        while (!fila.isEmpty()) {
-            No atual = fila.poll();
+        while (!pilha.isEmpty()) {
+            No atual = pilha.pop();
             System.out.print(atual.valor + " ");
 
-            if (atual.esquerda != null) {
-                fila.add(atual.esquerda);
+            if (atual.direita != null) {
+                pilha.push(atual.direita);
             }
 
-            if (atual.direita != null) {
-                fila.add(atual.direita);
+            if (atual.esquerda != null) {
+                pilha.push(atual.esquerda);
             }
         }
     }
