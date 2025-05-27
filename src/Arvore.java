@@ -3,7 +3,7 @@ import java.util.Stack;
 public class Arvore {
     No raiz;
 
-    public int contarNosFolhaIterativo() {
+    public int contarNosIterativo() {
         if (raiz == null) return 0;
 
         int contador = 0;
@@ -12,10 +12,7 @@ public class Arvore {
 
         while (!pilha.isEmpty()) {
             No atual = pilha.pop();
-
-            if (atual.esquerda == null && atual.direita == null) {
-                contador++;
-            }
+            contador++;
 
             if (atual.direita != null) {
                 pilha.push(atual.direita);
