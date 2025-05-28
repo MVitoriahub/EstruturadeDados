@@ -9,6 +9,6 @@ public class Main {
         arvore.raiz.esquerda.direita = new No("e");
         arvore.raiz.direita.direita = new No("f");
 
-        System.out.println("Número total de nós: " + arvore.contarNosIterativo());
+        System.out.println("Número de nós folha: " + arvore.contarNosFolhaRecursivo());
     }
 }
