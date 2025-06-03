@@ -1,14 +1,14 @@
 public class Main {
     public static void main(String[] args) {
-        Arvore arvore = new Arvore();
+        ArvoreAvl arvore = new ArvoreAvl();
 
-        arvore.raiz = new No("a");
-        arvore.raiz.esquerda = new No("b");
-        arvore.raiz.direita = new No("c");
-        arvore.raiz.esquerda.esquerda = new No("d");
-        arvore.raiz.esquerda.direita = new No("e");
-        arvore.raiz.direita.direita = new No("f");
+        arvore.inserir(30);
+        arvore.inserir(20);
+        arvore.inserir(10);
+        arvore.inserir(40);
+        arvore.inserir(50);
 
-        System.out.println("Número de nós usando fila: " + arvore.contarNosFila());
+        arvore.exibirEmOrdem();
     }
 }
+

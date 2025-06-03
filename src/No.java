@@ -1,9 +1,13 @@
 public class No {
-    String valor;
-    No esquerda, direita;
+    int valor;
+    int altura;
+    No esquerda;
+    No direita;
 
-    public No(String valor) {
+    public No(int valor) {
         this.valor = valor;
-        esquerda = direita = null;
+        this.esquerda=null;
+        this.direita=null;
+        this.altura=1;
     }
 }
