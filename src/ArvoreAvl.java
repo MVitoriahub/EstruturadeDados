@@ -1,85 +1,91 @@
 public class ArvoreAvl {
-    private No raiz;
+    No raiz;
 
-    public void inserir(int valor) {
-        raiz = inserir(raiz, valor);
+    int altura(No no) {
+        if (no == null)
+            return 0;
+        return no.altura;
     }
 
-    private No inserir(No no, int valor) {
-        if (no == null) return new No(valor);
+    int fatorBalanceamento(No no) {
+        if (no == null)
+            return 0;
+        return altura(no.esquerdo) - altura(no.direito);
+    }
 
-        if (valor < no.valor)
-            no.esquerda = inserir(no.esquerda, valor);
-        else if (valor > no.valor)
-            no.direita = inserir(no.direita, valor);
+    No rotacaoDireita(No y) {
+        No x = y.esquerdo;
+        No T2 = x.direito;
+
+        x.direito = y;
+        y.esquerdo = T2;
+
+        y.altura = Math.max(altura(y.esquerdo), altura(y.direito)) + 1;
+        x.altura = Math.max(altura(x.esquerdo), altura(x.direito)) + 1;
+
+        return x;
+    }
+
+    No rotacaoEsquerda(No x) {
+        No y = x.direito;
+        No T2 = y.esquerdo;
+
+        y.esquerdo = x;
+        x.direito = T2;
+
+        x.altura = Math.max(altura(x.esquerdo), altura(x.direito)) + 1;
+        y.altura = Math.max(altura(y.esquerdo), altura(y.direito)) + 1;
+
+        return y;
+    }
+
+    No inserir(No no, int chave) {
+        if (no == null)
+            return new No(chave);
+
+        if (chave < no.chave)
+            no.esquerdo = inserir(no.esquerdo, chave);
+        else if (chave > no.chave)
+            no.direito = inserir(no.direito, chave);
         else
             return no;
 
-        no.altura = 1 + Math.max(altura(no.esquerda), altura(no.direita));
+        no.altura = 1 + Math.max(altura(no.esquerdo), altura(no.direito));
+        int balance = fatorBalanceamento(no);
 
+        if (balance > 1 && chave < no.esquerdo.chave)
+            return rotacaoDireita(no);
 
-        int fator = altura(no.esquerda) - altura(no.direita);
+        if (balance < -1 && chave > no.direito.chave)
+            return rotacaoEsquerda(no);
 
-
-        if (fator > 1 && valor < no.esquerda.valor)
-            return rotacionarDireita(no);
-
-        if (fator < -1 && valor > no.direita.valor)
-            return rotacionarEsquerda(no);
-
-        if (fator > 1 && valor > no.esquerda.valor) {
-            no.esquerda = rotacionarEsquerda(no.esquerda);
-            return rotacionarDireita(no);
+        if (balance > 1 && chave > no.esquerdo.chave) {
+            no.esquerdo = rotacaoEsquerda(no.esquerdo);
+            return rotacaoDireita(no);
         }
 
-        if (fator < -1 && valor < no.direita.valor) {
-            no.direita = rotacionarDireita(no.direita);
-            return rotacionarEsquerda(no);
+        if (balance < -1 && chave < no.direito.chave) {
+            no.direito = rotacaoDireita(no.direito);
+            return rotacaoEsquerda(no);
         }
 
         return no;
     }
 
-    private int altura(No no) {
-        return (no == null) ? 0 : no.altura;
+    public void inserir(int chave) {
+        raiz = inserir(raiz, chave);
     }
 
-    private No rotacionarDireita(No y) {
-        No x = y.esquerda;
-        No T2 = x.direita;
-
-        x.direita = y;
-        y.esquerda = T2;
-
-        y.altura = 1 + Math.max(altura(y.esquerda), altura(y.direita));
-        x.altura = 1 + Math.max(altura(x.esquerda), altura(x.direita));
-
-        return x;
-    }
-
-    private No rotacionarEsquerda(No x) {
-        No y = x.direita;
-        No T2 = y.esquerda;
-
-        y.esquerda = x;
-        x.direita = T2;
-
-        x.altura = 1 + Math.max(altura(x.esquerda), altura(x.direita));
-        y.altura = 1 + Math.max(altura(y.esquerda), altura(y.direita));
-
-        return y;
-    }
-
-    public void exibirEmOrdem() {
-        exibir(raiz);
+    public void emOrdem() {
+        percursoemOrdem(raiz);
         System.out.println();
     }
 
-    private void exibir(No no) {
+    void percursoemOrdem(No no) {
         if (no != null) {
-            exibir(no.esquerda);
-            System.out.print(no.valor + " ");
-            exibir(no.direita);
+            percursoemOrdem(no.esquerdo);
+            System.out.print(no.chave + " ");
+            percursoemOrdem(no.direito);
         }
     }
 }
