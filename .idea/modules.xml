@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ArvoreBinaria.iml" filepath="$PROJECT_DIR$/ArvoreBinaria.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArvoreRubroNegra/ArvoreRubroNegra.iml" filepath="$PROJECT_DIR$/ArvoreRubroNegra/ArvoreRubroNegra.iml" />
     </modules>
   </component>
 </project>
